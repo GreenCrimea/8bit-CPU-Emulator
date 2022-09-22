@@ -1,5 +1,6 @@
 #include <iostream>
+#include "memory.h"
 
-int main(int, char**) {
+int main() {
     std::cout << "Hello, world!\n";
 }
