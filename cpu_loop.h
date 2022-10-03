@@ -1,4 +1,6 @@
 #include "registers.h"
+#include "instructions.h"
+#include "flags.h"
 
 class CPU_Loop{
 
@@ -15,7 +17,7 @@ class CPU_Loop{
         }
 
         int decode(){
-            
+
         }
 
         int execute(){
