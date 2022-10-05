@@ -15,6 +15,14 @@ class Registers{
             program_counter = value;
         }
 
+        void set_instruction_counter (unsigned long value){
+            instruction_counter = value;
+        }
+
+        void set_instruction_target (unsigned long value){
+            instruction_target = value;
+        }
+
         void set_instruction_register (unsigned long value){
             instruction_register = value;
         }
@@ -27,21 +35,21 @@ class Registers{
             register_b = value;
         }
 
-        void set_register_c (unsigned long value){
-            register_c = value;
-        }
-
-        void set_register_d (unsigned long value){
-            register_d = value;
-        }
-
         //getter
         unsigned long get_program_counter (){
             return program_counter;
         }
 
+        unsigned long get_instruction_counter (){
+            return instruction_counter;
+        }
+
+        unsigned long get_instruction_target (){
+            return instruction_counter;
+        }
+
         unsigned long get_instruction_register(){
-            return instruction_register;
+            return instruction_target;
         }
 
         unsigned long get_register_a (){
@@ -52,26 +60,18 @@ class Registers{
             return register_b;
         }
 
-        unsigned long get_register_c (){
-            return register_c;
-        }
-
-        unsigned long get_register_d (){
-            return register_d;
-        }
-
     private:
 
         unsigned long program_counter {};
+
+        unsigned long instruction_counter {};
+
+        unsigned long instruction_target {};
 
         unsigned long instruction_register {};
 
         unsigned long register_a {};
 
         unsigned long register_b {};
-
-        unsigned long register_c {};
-
-        unsigned long register_d {};
 
 };

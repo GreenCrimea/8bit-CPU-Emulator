@@ -1,6 +1,5 @@
 #include "registers.h"
 #include "instructions.h"
-#include "flags.h"
 
 class CPU_Loop{
 
@@ -37,6 +36,10 @@ class CPU_Loop{
         Memory memory;
 
         Registers registers;
+
+        Instructions instructions;
+
+        Flags flags;
 
 
 };
