@@ -51,6 +51,14 @@ class Flags{
             flag_array[11] = 1;
         }
 
+        void add(){
+            flag_array[12] = 1;
+        }
+
+        void subtract(){
+            flag_array[13] = 1;
+        }
+
         void reset_flags(){
             for(size_t i = 0; i < FLAGS_AMOUNT; ++i){
                 flag_array[i] = 0;

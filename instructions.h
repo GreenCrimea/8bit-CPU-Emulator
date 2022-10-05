@@ -111,13 +111,92 @@ class Instructions {
             }
         }
 
-        void instruct_str(Flags flags, Registers registers){
+        //STORE INSTRUCTION:
+        //takes 1 cycle; stores data in ram or mem;
+        //flags;    0 = mem_in,r_pc; 1 = mem_in,r_ir; 2 = mem_in,r_ra; 3 = mem_in,r_rb;
+        //          4 = ram_in,r_pc; 5 = ram_in,r_ir; 6 = ram_in,r_ra; 7 = ram_in,r_rb;
+        void instruct_store(Flags flags, Registers registers, unsigned long instruction_flags){
 
+            if(registers.get_instruction_target() == 0){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(1);
+            }
+
+            if(registers.get_instruction_target() == registers.get_instruction_counter()){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(0);
+
+            }else if(registers.get_instruction_counter() == 0){
+                switch(instruction_flags){
+
+                    case 0:
+                        flags.mem_in();
+                        flags.r_pc();
+                        break;
+                    case 1:
+                        flags.mem_in();
+                        flags.r_ir();
+                        break;
+                    case 2:
+                        flags.mem_in();
+                        flags.r_ra();
+                        break;
+                    case 3:
+                        flags.mem_in();
+                        flags.r_rb();
+                        break;
+                    case 4:
+                        flags.ram_in();
+                        flags.r_ir();
+                        break;
+                    case 5:
+                        flags.ram_in();
+                        flags.r_pc();
+                        break;
+                    case 6:
+                        flags.ram_in();
+                        flags.r_ra();
+                        break;
+                    case 7:
+                        flags.ram_in();
+                        flags.r_rb();
+                        break;
+                }
+                registers.set_instruction_counter(1);
+            }
         }
 
-        void instruct_add(Flags flags, Registers registers){
+        //ADD INSTRUCTION:
+        //takes 1 cycle; adds together register a + b;
+        //Flags;    0 = store result in A;
+        //          1 = store result in B;
+        void instruct_add(Flags flags, Registers registers, unsigned long instruction_flags){
 
+            if(registers.get_instruction_target() == 0){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(1);
+            }
+
+            if(registers.get_instruction_target() == registers.get_instruction_counter()){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(0);
+
+            }else if(registers.get_instruction_counter() == 0){
+                switch(instruction_flags){
+
+                    case 0:
+                        flags.mem_in();
+                        flags.r_pc();
+                        break;
+                    case 1:
+                        flags.mem_in();
+                        flags.r_ir();
+                        break;
+                }
+                registers.set_instruction_counter(1);
+            }
         }
+
         
         void instruct_sub(Flags flags, Registers registers){
 
