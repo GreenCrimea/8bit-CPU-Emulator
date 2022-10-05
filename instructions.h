@@ -185,12 +185,12 @@ class Instructions {
                 switch(instruction_flags){
 
                     case 0:
-                        flags.mem_in();
-                        flags.r_pc();
+                        flags.add();
+                        flags.w_ra();
                         break;
                     case 1:
-                        flags.mem_in();
-                        flags.r_ir();
+                        flags.add();
+                        flags.w_rb();
                         break;
                 }
                 registers.set_instruction_counter(1);
@@ -198,8 +198,35 @@ class Instructions {
         }
 
         
-        void instruct_sub(Flags flags, Registers registers){
+        //SUBTRACT INSTRUCTION:
+        //takes 1 cycle; subtracts register a - b;
+        //Flags;    0 = store result in A;
+        //          1 = store result in B;
+        void instruct_subtract(Flags flags, Registers registers, unsigned long instruction_flags){
 
+            if(registers.get_instruction_target() == 0){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(1);
+            }
+
+            if(registers.get_instruction_target() == registers.get_instruction_counter()){
+                registers.set_instruction_counter(0);
+                registers.set_instruction_target(0);
+
+            }else if(registers.get_instruction_counter() == 0){
+                switch(instruction_flags){
+
+                    case 0:
+                        flags.subtract();
+                        flags.w_ra();
+                        break;
+                    case 1:
+                        flags.subtract();
+                        flags.w_rb();
+                        break;
+                }
+                registers.set_instruction_counter(1);
+            }
         }
 
         void instruct_jmp0(Flags flags, Registers registers){
