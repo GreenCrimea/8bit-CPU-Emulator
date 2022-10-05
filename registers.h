@@ -74,4 +74,6 @@ class Registers{
 
         unsigned long register_b {};
 
+        unsigned long 
+
 };
