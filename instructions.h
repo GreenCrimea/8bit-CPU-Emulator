@@ -6,6 +6,7 @@ class Instructions {
     public:
 
         //LOAD INSTRUCTION:
+        //takes 1 cycle; loads data from one place to another;
         //flags;    0 = mem_out,w_pc; 1 = mem_out,w_ir; 2 = mem_out,w_ra; 3 = mem_out,w_rb;
         //          4 = ram_out,w_pc; 5 = ram_out,w_ir; 6 = ram_out,w_ra; 7 = ram_out,w_rb;
         //          8 = r_pc,w_ir; 9 = r_pc,w_ra; 10 = r_pc,w_rb;
@@ -25,7 +26,7 @@ class Instructions {
 
             }else if(registers.get_instruction_counter() == 0){
                 switch(instruction_flags){
-                    
+
                     case 0:
                         flags.mem_out();
                         flags.w_pc();
@@ -59,13 +60,55 @@ class Instructions {
                         flags.w_rb();
                         break;
                     case 8:
-
+                        flags.r_pc();
+                        flags.w_ir();
+                        break;
+                    case 9:
+                        flags.r_pc();
+                        flags.w_ra();
+                        break;
+                    case 10:
+                        flags.r_pc();
+                        flags.w_rb();
+                        break;
+                    case 11:
+                        flags.r_ir();
+                        flags.w_pc();
+                        break;
+                    case 12:
+                        flags.r_ir();
+                        flags.w_ra();
+                        break;
+                    case 13:
+                        flags.r_ir();
+                        flags.w_rb();
+                        break;
+                    case 14:
+                        flags.r_ra();
+                        flags.w_pc();
+                        break;
+                    case 15:
+                        flags.r_ra();
+                        flags.w_ir();
+                        break;
+                    case 16:
+                        flags.r_ra();
+                        flags.w_rb();
+                        break;
+                    case 17:
+                        flags.r_rb();
+                        flags.w_pc();
+                        break;
+                    case 18:
+                        flags.r_rb();
+                        flags.w_ir();
+                        break;
+                    case 19:
+                        flags.r_rb();
+                        flags.w_ra();
                 }
+                registers.set_instruction_counter(1);
             }
-            
-
-
-
         }
 
         void instruct_str(Flags flags, Registers registers){

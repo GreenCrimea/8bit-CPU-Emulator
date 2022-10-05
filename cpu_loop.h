@@ -12,7 +12,7 @@ class CPU_Loop{
         ~CPU_Loop()=default;
 
         int fetch(){
-            registers.set_instruction_register(memory.get_ram(registers.get_program_counter()));
+            
         }
 
         int decode(){
