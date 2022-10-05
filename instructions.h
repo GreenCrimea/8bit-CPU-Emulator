@@ -229,6 +229,8 @@ class Instructions {
             }
         }
 
+        //JUMP IF EQUAL INSTRUCTION
+        //
         void instruct_jmp0(Flags flags, Registers registers){
 
         }
